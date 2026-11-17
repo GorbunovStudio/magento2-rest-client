@@ -59,7 +59,7 @@
     "url": "git+https://github.com/nouvak/magento2-rest-client.git"
   },
   "scripts": {
-    "test": "test"
+    "test": "mocha --ui tdd test/unit"
   },
   "version": "0.0.14"
 }
