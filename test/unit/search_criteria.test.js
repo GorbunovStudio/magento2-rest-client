@@ -46,6 +46,15 @@ suite('search criteria query', function () {
     test('keeps other criteria as the searchCriteria value', function () {
         assert.strictEqual(buildSearchCriteriaQuery(''), 'searchCriteria=');
         assert.strictEqual(buildSearchCriteriaQuery('Test'), 'searchCriteria=Test');
+        assert.strictEqual(buildSearchCriteriaQuery(undefined), 'searchCriteria=undefined');
+    });
+
+    test('product list request without filters keeps the searchCriteria parameter', function () {
+        var urls = [];
+
+        return products(createRestClient(urls)).list('').then(function () {
+            assert.deepStrictEqual(urls, ['/products?searchCriteria=']);
+        });
     });
 
     test('order history request has no empty searchCriteria parameter', function () {
